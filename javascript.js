@@ -15,8 +15,9 @@ function getHumanChoice() {
     return prompt();
 }
 
-const humanScore = 0
-const computerScore = 0
+let humanScore = 0
+let computerScore = 0
+
 /* 
 1. playRound function takes the human and computer player choices as arguments,
 2. plays a single round,
