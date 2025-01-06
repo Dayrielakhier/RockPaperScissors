@@ -26,7 +26,7 @@ const computerScore = 0
 */
 
 function playRound(humanChoice, computerChoice) {
-    humanChoice.toLowerCase();
+    humanChoice = humanChoice.toLowerCase();
     if (humanChoice == "rock" && computerChoice == "scissors") {
         console.log("You win! Rock beats scissors.");
         ++humanScore
@@ -47,11 +47,11 @@ function playRound(humanChoice, computerChoice) {
         ++computerScore
     } else {
         console.log("It's a draw!")
-    }
-
+    };
 }
 
 const humanSelection = getHumanChoice();
 const computerSelection = getComputerChoice();
 
 playRound(humanSelection, computerSelection);
+
