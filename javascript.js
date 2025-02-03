@@ -25,6 +25,11 @@ let computerScore = 0
 4. logs a winner announcement, such as: "You win! Paper beats Rock",
 5. make humanChoice parameter case-insensitive.
 */
+const results = document.querySelector("#results")
+
+const para = document.createElement("p")
+const score = document.createElement("p")
+const ann = document.createElement("p")
 
 function playRound(humanChoice, computerChoice) {
     if (humanChoice === undefined || null) {
@@ -37,49 +42,50 @@ function playRound(humanChoice, computerChoice) {
         humanChoice = humanChoice.toLowerCase()
     };
     if (humanChoice === "rock" && computerChoice === "scissors") {
-        console.log("You win! Rock beats scissors.");
+        para.textContent = "You win! Rock beats scissors.";
+        results.appendChild(para);
         ++humanScore
     } else if (humanChoice === "paper" && computerChoice === "rock") {
-        console.log("You win! Paper beats rock.");
+        para.textContent = "You win! Paper beats rock.";
+        results.appendChild(para);
         ++humanScore
     } else if (humanChoice === "scissors" && computerChoice === "paper") {
-        console.log("You win! Scissors beats paper.");
+        para.textContent = "You win! Scissors beats paper.";
+        results.appendChild(para);
         ++humanScore
     } else if (humanChoice === "rock" && computerChoice === "paper") {
-        console.log ("You lose! Paper beats rock.");
+        para.textContent = "You lose! Paper beats rock.";
+        results.appendChild(para);
         ++computerScore
     } else if (humanChoice === "paper" && computerChoice === "scissors") {
-        console.log("You lose! Scissors beats paper.");
+        para.textContent = "You lose! Scissors beats paper.";
+        results.appendChild(para);
         ++computerScore
     } else if (humanChoice === "scissors" && computerChoice === "rock") {
-        console.log("You lose! Rock beats scissors.");
+        para.textContent = "You lose! Rock beats scissors.";
+        results.appendChild(para);
         ++computerScore
     } else {
-        console.log("It's a draw!")
+        para.textContent = "It's a draw!";
+        results.appendChild(para)
     };
-    console.log(`Your score: ${humanScore}; Computer score: ${computerScore}`)
+    score.textContent = `Your score: ${humanScore}; Computer score: ${computerScore}`
+    results.appendChild(score)
+
+    if (humanScore === 5) {
+        ann.textContent = "Human wins. Computer loses."
+        results.appendChild(ann)
+    } else if (computerScore === 5) {
+        ann.textContent = "Human loses. Computer wins."
+        results.appendChild(ann)
+    } 
 }
 
+const rock = document.querySelector("#rock")
+const paper = document.querySelector("#paper")
+const scissors = document.querySelector("#scissors")
 
-/*
-1. playGame function calls playRound 5 times to play 5 rounds,
-2. keeps track of the scores,
-3. declares a winner, a loser or a draw.
-*/
+rock.addEventListener("click", () => playRound("rock", getComputerChoice()))
+paper.addEventListener("click", () => playRound("paper", getComputerChoice()))
+scissors.addEventListener("click", () => playRound("scissors", getComputerChoice()))
 
-function playGame() {
-    playRound(getHumanChoice(), getComputerChoice()); 
-    playRound(getHumanChoice(), getComputerChoice()); 
-    playRound(getHumanChoice(), getComputerChoice()); 
-    playRound(getHumanChoice(), getComputerChoice()); 
-    playRound(getHumanChoice(), getComputerChoice()); 
-    if (humanScore > computerScore) {
-        console.log("Human wins. Computer loses.")
-    } else if (computerScore > humanScore) {
-        console.log("Human loses. Computer wins.")
-    } else {
-        console.log("It's a draw!")
-    }
-}
-
-playGame()
